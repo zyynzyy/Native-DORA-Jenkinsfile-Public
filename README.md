@@ -27,3 +27,22 @@ Native-DORA-Jenkinsfile-Public/
 ├── templates.html                # Secondary application template page
 ├── templatemo-quantix-style.css  # Application stylesheet
 └── templatemo-quantix-script.js  # Application client-side script
+
+How the Jenkinsfile Measurement Mechanism Works
+The pipeline follows an event-driven workflow triggered by a GitHub Webhook on every git push and deploys the static web application to an Nginx server (/var/www/dora-site):
+
+GitHub Push (Webhook) ──▶ Checkout ──▶ Semgrep SAST ──▶ Build & Deploy (Nginx) ──▶ Native DORA Calculation
+
+1. Environment Configuration
+The Jenkinsfile defines core paths and parameters at the pipeline level without external DORA plugins:
+
+APP_DIR: Target Nginx web root (/var/www/dora-site).
+
+DORA_LOG: Persistent local CSV log path (/var/lib/jenkins/dora-metrics/deployments.csv).
+
+DORA_WINDOW_DAYS: Observation window set to 30 days for Deployment Frequency calculation.
+
+2. Capturing Commit Timestamp (T_commit)
+During the Capture Source Info stage, the pipeline extracts the exact Unix Epoch timestamp (UTC seconds) of the latest commit directly from Git metadata:
+
+git log -1 --format=%ct
