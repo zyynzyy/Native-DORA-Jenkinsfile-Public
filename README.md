@@ -27,4 +27,3 @@ Native-DORA-Jenkinsfile-Public/
 ├── templates.html                # Secondary application template page
 ├── templatemo-quantix-style.css  # Application stylesheet
 └── templatemo-quantix-script.js  # Application client-side script
-
