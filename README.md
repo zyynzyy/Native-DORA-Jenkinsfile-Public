@@ -63,16 +63,15 @@ Immediately after deployment succeeds, an embedded shell and Groovy routine comp
 
 Evaluated across **50 automated deployment cycles** (25 minor modifications and 25 major modifications) on an isolated Ubuntu 24.04 LTS virtual instance (4 vCPU, 8 GB RAM) running Jenkins v2.555.1, Semgrep CLI v1.61.0, and Nginx v1.24.0:
 
-| Metric / Resource | Mean | Median | Min | Max | Notes |
-| :--- | :---: | :---: | :---: | :---: | :--- |
-| **Pipeline Success Rate** | 100% | — | — | — | 50 / 50 builds completed (`SUCCESS`) |
-| **Automated Lead Time (LT)** | 30.76 s | 27.50 s | 24 s | 113 s | Minor median: 27 s; Major median: 28 s (p = 0.891) |
-| **Manual Lead Time (Stopwatch)** | 33.32 s | — | 24 s | 117 s | Mean difference: 2.56 s (webhook RTT & UI render boundary) |
-| **Deployment Frequency (DF)** | 1.67 / day | — | — | — | Calculated over a 30-day rolling window (50 builds) |
-| **CPU Utilization** | 20.05% | — | 11.70% | 34.27% | Lightweight execution without external agents |
-| **RAM Utilization** | 12.88% | — | 11.14% | 13.58% | Stable footprint with no memory leaks observed |
-| **Network Ping Latency** | 31.47 ms | — | 28.10 ms | 99.90 ms | Max spike occurred during VM cold start (Build #26) |
-
+| Metric / Resource | Mean | Min | Max | Notes |
+| :--- | :---: | :---: | :---: | :--- |
+| **Pipeline Success Rate** | 100% | — | — | 50 / 50 builds completed (`SUCCESS`) |
+| **Automated Lead Time (LT)** | 30.76 s | 24 s | 113 s | Minor mean: 28.24 s; Major mean: 33.28 s (p = 0.891) |
+| **Manual Lead Time (Stopwatch)** | 33.32 s | 24 s | 117 s | Mean difference: 2.56 s (webhook RTT & UI render boundary) |
+| **Deployment Frequency (DF)** | 1.67 / day | — | — | Calculated over a 30-day rolling window (50 builds) |
+| **CPU Utilization** | 20.05% | 11.70% | 34.27% | Lightweight execution without external agents |
+| **RAM Utilization** | 12.88% | 11.14% | 13.58% | Stable footprint with no memory leaks observed |
+| **Network Ping Latency** | 31.47 ms | 28.10 ms | 99.90 ms | Max spike occurred during VM cold start (Build #26) |
 ---
 
 ## Quick Adaptation Guide
